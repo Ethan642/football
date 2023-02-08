@@ -1,3 +1,3 @@
 # football
 
-Diese Spiel is für Fußball
+Diese Spiel ist für Fußball
