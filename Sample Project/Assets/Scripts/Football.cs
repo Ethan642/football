@@ -12,11 +12,19 @@ public class Football : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
     }
 
-    public void throwFuﬂball(Vector3 direction, float Power)
+    public void throwBall(Vector3 direction, float Power)
     {
+        rigidbody.isKinematic = false;
         transform.parent = null;
+        
         transform.LookAt(direction);
-        rigidbody.AddForce(direction * Power * Time.deltaTime);
+        rigidbody.AddForce(direction * Power, ForceMode.Impulse);
+    }
+
+
+    void OnCollisionEnter(Collision other)
+    {
+
     }
 
     // Update is called once per frame
