@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     float y;
     public float Gravity = 20;
 
+
+
     Vector3 theMove;
     Vector3 velocity;
 
@@ -73,7 +75,6 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            print("jumped");
             jumping = true;
             velocity.y += Mathf.Sqrt(JumpPower * -2 * -Gravity);
             

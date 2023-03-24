@@ -17,7 +17,7 @@ public class FootballController : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && footballHolder.GetComponentInChildren<Football>())
         {
             Football football = footballHolder.GetComponentInChildren<Football>();
-            football.throwBall(transform.GetComponentInChildren<Camera>().transform.forward, 20f);
+            football.throwBall(transform.GetComponentInChildren<Camera>().transform.forward, 50f);
         }
     }
 }
