@@ -1453,6 +1453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1707dc2aae8bd6428870dcdc15922ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1067449157}
 --- !u!54 &311768856
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2918,6 +2919,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 0739834de4e034e4182ba1a9a909f66f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 186ad8f063dbf430da4d56ebc0cb14e0, type: 3}
+--- !u!4 &863844463 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4470359990163047466, guid: 76a82b75a06c59c4ba3ffbb6ac7cd820, type: 3}
+  m_PrefabInstance: {fileID: 4470359990501421627}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &864497854
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5247,6 +5253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   footballHolder: {fileID: 1787879082}
+  third: {fileID: 863844463}
 --- !u!1001 &1637999243
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8035,6 +8042,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4470359989807849288, guid: 76a82b75a06c59c4ba3ffbb6ac7cd820, type: 3}
+      propertyPath: near clip plane
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 4470359989807849290, guid: 76a82b75a06c59c4ba3ffbb6ac7cd820, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -8053,7 +8064,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4470359990489624970, guid: 76a82b75a06c59c4ba3ffbb6ac7cd820, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 647.68
+      value: 664
       objectReference: {fileID: 0}
     - target: {fileID: 4470359990489624970, guid: 76a82b75a06c59c4ba3ffbb6ac7cd820, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8061,7 +8072,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4470359990489624970, guid: 76a82b75a06c59c4ba3ffbb6ac7cd820, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -467.25
+      value: -682.7
       objectReference: {fileID: 0}
     - target: {fileID: 4470359990489624970, guid: 76a82b75a06c59c4ba3ffbb6ac7cd820, type: 3}
       propertyPath: m_LocalRotation.w
@@ -8093,7 +8104,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4470359990489624980, guid: 76a82b75a06c59c4ba3ffbb6ac7cd820, type: 3}
       propertyPath: RunSpeed
-      value: 64.89
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 4470359990489624980, guid: 76a82b75a06c59c4ba3ffbb6ac7cd820, type: 3}
       propertyPath: playerModel
@@ -8101,7 +8112,7 @@ PrefabInstance:
       objectReference: {fileID: 762847925}
     - target: {fileID: 4470359990489624980, guid: 76a82b75a06c59c4ba3ffbb6ac7cd820, type: 3}
       propertyPath: MouseSensitivity
-      value: 2500
+      value: 2977.24
       objectReference: {fileID: 0}
     - target: {fileID: 4470359990489624981, guid: 76a82b75a06c59c4ba3ffbb6ac7cd820, type: 3}
       propertyPath: m_Name
