@@ -33,13 +33,14 @@ public class Football : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
+        /*
         if (third)
         {
             third.parent = player;
             third.localPosition = Vector3.zero;
             third.GetComponentInChildren<Camera>().transform.localPosition = new Vector3(0.892f, 1, -2.378f);
             third = null;
-        }
+        }*/
         if (other.collider.transform.parent && other.collider.transform.parent.tag == "GoodTeam")
         {
 
