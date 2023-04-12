@@ -33,6 +33,22 @@ public class EnemyAI : MonoBehaviour
 
     }
 
+
+    public void applyVelocity(Vector3 force)
+    {
+        velocity += force;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Transform possible = other.transform;
+        if (possible.tag == "GoodTeam" && possible != transform)
+        {
+            print("how");
+            applyVelocity(possible.forward * 10f);
+        }
+    }
+
     public void jump()
     {
         jumping = true;
