@@ -81,5 +81,11 @@ public class PlayerController : MonoBehaviour
         }
         jumping = false;
         controller.Move(velocity * Time.deltaTime);
+
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        print("guy");
     }
 }

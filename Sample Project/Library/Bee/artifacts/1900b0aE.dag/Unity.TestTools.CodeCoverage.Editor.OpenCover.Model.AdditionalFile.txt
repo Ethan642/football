@@ -1,5 +1,1 @@
-<<<<<<< HEAD
 C:\Users\ethan.323092\Desktop\help\football\Sample Project
-=======
-C:\Users\Michael.224497\Desktop\Football\football\Sample Project
->>>>>>> 051129b4446b61a9f9cc2e3abe9209578f9dd164

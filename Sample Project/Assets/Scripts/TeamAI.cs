@@ -10,6 +10,7 @@ public class TeamAI : MonoBehaviour
     public Transform groundCheck;
     public LayerMask groundMask;
     public Transform playerModel;
+    public Transform footballHolder;
     bool jumping;
 
     public float Gravity = 20;
@@ -30,6 +31,32 @@ public class TeamAI : MonoBehaviour
     public void aiMove(Vector3 direction)
     {
 
+    }
+
+    public void applyVelocity(Vector3 force)
+    {
+        velocity += force;
+    }
+    /*
+
+    private void OnCollisionEnter(Collision other)
+    {
+        print("guy");
+        Transform possible = other.collider.transform;
+        if (possible.tag == "GoodTeam")
+        {
+            applyVelocity(possible.forward * 40f);
+        }
+    }*/
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        Transform possible = other.transform;
+        if (possible.tag == "GoodTeam" && possible != transform)
+        {
+            print("how");
+            applyVelocity(possible.forward * 10f);
+        }
     }
 
     public void jump()
@@ -65,6 +92,9 @@ public class TeamAI : MonoBehaviour
 
 
         velocity.y += -Gravity * Time.deltaTime;
+
+
+        velocity = Vector3.Lerp(velocity, new Vector3(0, velocity.y, 0), Time.deltaTime * 1);
 
 
         if (isGrounded && !jumping)

@@ -46,14 +46,27 @@ public class Football : MonoBehaviour
             third.GetComponentInChildren<Camera>().transform.localPosition = new Vector3(0.892f, 1, -2.378f);
             third = null;
         }*/
-        if (other.collider.transform.parent && other.collider.transform.parent.tag == "GoodTeam" && !rigidbody.isKinematic && kicked && lastKicked > 1f)
+        Transform theGuy = other.collider.transform;
+        if (theGuy && theGuy.tag == "GoodTeam" && !rigidbody.isKinematic && kicked && lastKicked > 1f)
         {
 
             rigidbody.isKinematic = true;
-            transform.parent = other.collider.transform.parent.GetComponent<FootballController>().footballHolder;
+            
+
+            if (theGuy.GetComponent<FootballController>())
+            {
+                transform.parent = theGuy.GetComponent<FootballController>().footballHolder;
+            } else if (theGuy.GetComponent<TeamAI>())
+            {
+                transform.parent = theGuy.GetComponent<TeamAI>().footballHolder;
+            } else if (theGuy.GetComponent<EnemyAI>())
+            {
+                transform.parent = theGuy.GetComponent<EnemyAI>().footballHolder;
+            }
+            
             transform.localPosition = new Vector3(-1.561642e-05f, 0, 4.589558e-05f);
             transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
-        } else if (other.collider.transform.parent && other.collider.transform.parent.tag == "GoodTeam" && !kicked)
+        } else if (theGuy && theGuy.tag == "GoodTeam" && !kicked)
         {
             // Vector3 thingPos = (other.collider.transform.position - transform.position).normalized;
             print("ro");
