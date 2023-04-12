@@ -6691,6 +6691,8 @@ MonoBehaviour:
   playerModel: {fileID: 2052013661}
   footballHolder: {fileID: 29682141}
   Gravity: 20
+  aiInfo: {fileID: 0}
+  ballPos: {fileID: 0}
 --- !u!143 &1527671509
 CharacterController:
   m_ObjectHideFlags: 0
@@ -12101,7 +12103,9 @@ MonoBehaviour:
     m_Bits: 64
   playerModel: {fileID: 1527428433092604972}
   footballHolder: {fileID: 396244680}
+  aiInfo: {fileID: 0}
   Gravity: 20
+  ballPos: {fileID: 0}
 --- !u!65 &1527428434080817587
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -12,10 +12,11 @@ public class TeamAI : MonoBehaviour
     public Transform playerModel;
     public Transform footballHolder;
     bool jumping;
+    public TeamIntel aiInfo;
 
     public float Gravity = 20;
 
-
+    public Transform ballPos;
 
     Vector3 theMove;
     Vector3 velocity;

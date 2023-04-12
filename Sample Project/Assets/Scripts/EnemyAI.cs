@@ -15,7 +15,9 @@ public class EnemyAI : MonoBehaviour
 
     public float Gravity = 20;
 
+    public TeamIntel aiInfo;
 
+    public Transform ballPos;
 
     Vector3 theMove;
     Vector3 velocity;
@@ -83,7 +85,7 @@ public class EnemyAI : MonoBehaviour
 
         velocity.y += -Gravity * Time.deltaTime;
 
-
+        velocity = Vector3.Lerp(velocity, new Vector3(0, velocity.y, 0), Time.deltaTime * 1);
         if (isGrounded && !jumping)
         {
             velocity.y = 0;
