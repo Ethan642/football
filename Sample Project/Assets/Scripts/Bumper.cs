@@ -10,6 +10,18 @@ public class Bumper : MonoBehaviour
         
     }
 
+
+
+    /*
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.transform.GetComponentInParent<TeamAI>())
+        {
+            print("ja");
+            collision.transform.GetComponentInParent<TeamAI>().applyVelocity(transform.forward * 10);
+        }
+    }
+    */
     // Update is called once per frame
     void Update()
     {

@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     public Transform playerModel;
     bool jumping;
 
+    float lastPushed;
+
     float x;
     float y;
     public float Gravity = 20;
@@ -31,6 +33,21 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+    }
+    public void applyVelocity(Vector3 force)
+    {
+        velocity += force;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Transform possible = other.transform;
+        if (possible.tag == "GoodTeam" && possible != transform && lastPushed > .1f)
+        {
+            print("how");
+            lastPushed = 0;
+            applyVelocity(possible.forward * 10f);
+        }
     }
 
     // Update is called once per frame
@@ -72,6 +89,8 @@ public class PlayerController : MonoBehaviour
         {
             velocity.y = 0;
         }
+
+        lastPushed += Time.deltaTime;
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {

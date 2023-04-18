@@ -349,6 +349,7 @@
 "Assets/Scripts/EnemyAI.cs"
 "Assets/Scripts/Football.cs"
 "Assets/Scripts/FootballController.cs"
+"Assets/Scripts/GameManager.cs"
 "Assets/Scripts/Menu.cs"
 "Assets/Scripts/PlayerController.cs"
 "Assets/Scripts/TeamAI.cs"

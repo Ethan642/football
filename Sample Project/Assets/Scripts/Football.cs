@@ -50,22 +50,29 @@ public class Football : MonoBehaviour
         if (theGuy && theGuy.tag == "GoodTeam" && !rigidbody.isKinematic && kicked && lastKicked > 1f)
         {
 
-            rigidbody.isKinematic = true;
-            
+            print(theGuy);
 
             if (theGuy.GetComponent<FootballController>())
             {
+                rigidbody.isKinematic = true;
                 transform.parent = theGuy.GetComponent<FootballController>().footballHolder;
+                transform.localPosition = new Vector3(-1.561642e-05f, 0, 4.589558e-05f);
+                transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
             } else if (theGuy.GetComponent<TeamAI>())
             {
+                rigidbody.isKinematic = true;
                 transform.parent = theGuy.GetComponent<TeamAI>().footballHolder;
+                transform.localPosition = new Vector3(-1.561642e-05f, 0, 4.589558e-05f);
+                transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
             } else if (theGuy.GetComponent<EnemyAI>())
             {
+                rigidbody.isKinematic = true;
                 transform.parent = theGuy.GetComponent<EnemyAI>().footballHolder;
+                transform.localPosition = new Vector3(-1.561642e-05f, 0, 4.589558e-05f);
+                transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
             }
             
-            transform.localPosition = new Vector3(-1.561642e-05f, 0, 4.589558e-05f);
-            transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+
         } else if (theGuy && theGuy.tag == "GoodTeam" && !kicked)
         {
             // Vector3 thingPos = (other.collider.transform.position - transform.position).normalized;

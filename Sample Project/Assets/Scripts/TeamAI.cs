@@ -14,6 +14,11 @@ public class TeamAI : MonoBehaviour
     bool jumping;
     public TeamIntel aiInfo;
 
+    public string role;
+    public int pos;
+
+    public GameManager manager;
+
     public float Gravity = 20;
 
     public Transform ballPos;
@@ -22,6 +27,8 @@ public class TeamAI : MonoBehaviour
     Vector3 velocity;
 
     float turnThing;
+
+    float lastPushed;
 
     // Start is called before the first frame update
     void Start()
@@ -38,24 +45,13 @@ public class TeamAI : MonoBehaviour
     {
         velocity += force;
     }
-    /*
-
-    private void OnCollisionEnter(Collision other)
-    {
-        print("guy");
-        Transform possible = other.collider.transform;
-        if (possible.tag == "GoodTeam")
-        {
-            applyVelocity(possible.forward * 40f);
-        }
-    }*/
-    
     private void OnTriggerEnter(Collider other)
     {
         Transform possible = other.transform;
-        if (possible.tag == "GoodTeam" && possible != transform)
+        if (possible.tag == "GoodTeam" && possible != transform && lastPushed > .1f)
         {
             print("how");
+            lastPushed = 0;
             applyVelocity(possible.forward * 10f);
         }
     }
@@ -97,6 +93,7 @@ public class TeamAI : MonoBehaviour
 
         velocity = Vector3.Lerp(velocity, new Vector3(0, velocity.y, 0), Time.deltaTime * 1);
 
+        lastPushed += Time.deltaTime;
 
         if (isGrounded && !jumping)
         {

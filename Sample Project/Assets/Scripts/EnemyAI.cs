@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
@@ -11,11 +12,20 @@ public class EnemyAI : MonoBehaviour
     public LayerMask groundMask;
     public Transform playerModel;
     public Transform footballHolder;
+    
     bool jumping;
 
     public float Gravity = 20;
 
     public TeamIntel aiInfo;
+
+    public GameManager manager;
+    
+
+    public string role;
+    public int pos;
+
+    float lastPushed;
 
     public Transform ballPos;
 
@@ -44,9 +54,10 @@ public class EnemyAI : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Transform possible = other.transform;
-        if (possible.tag == "GoodTeam" && possible != transform)
+        if (possible.tag == "GoodTeam" && possible != transform && lastPushed > .1f)
         {
             print("how");
+            lastPushed = 0;
             applyVelocity(possible.forward * 10f);
         }
     }
@@ -57,6 +68,9 @@ public class EnemyAI : MonoBehaviour
         velocity.y += Mathf.Sqrt(JumpPower * -2 * -Gravity);
     }
 
+    
+    
+
     // Update is called once per frame
     void Update()
     {
@@ -64,6 +78,23 @@ public class EnemyAI : MonoBehaviour
         bool isGrounded = Physics.CheckSphere(groundCheck.position, .2f, groundMask);
 
         Vector3 direction = Vector3.zero;//cam.transform.right * horizontal + new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z) * vertical;
+        
+        switch (role)
+        {
+            case "player":
+                Vector3 distance = (manager.playerPosition() - transform.position);
+                direction = Vector3.Scale(distance, new Vector3(1f, 0f, 1f));
+                
+                break;
+            case "ball":
+                break;
+
+            default:
+                break;
+
+        }
+
+
         direction.Normalize();
 
         if (isGrounded)
@@ -81,7 +112,7 @@ public class EnemyAI : MonoBehaviour
 
         controller.Move(theMove);
 
-
+        lastPushed += Time.deltaTime;
 
         velocity.y += -Gravity * Time.deltaTime;
 
