@@ -25,6 +25,7 @@ public class TeamAI : MonoBehaviour
 
     Vector3 theMove;
     Vector3 velocity;
+    Vector3 initPosition;
 
     float turnThing;
 
@@ -34,6 +35,7 @@ public class TeamAI : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        initPosition = transform.position;
     }
 
     public void aiMove(Vector3 direction)

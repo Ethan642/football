@@ -20,10 +20,13 @@ public class EnemyAI : MonoBehaviour
     public TeamIntel aiInfo;
 
     public GameManager manager;
-    
+
 
     public string role;
     public int pos;
+
+
+    Vector3 initPosition;
 
     float lastPushed;
 
@@ -38,6 +41,7 @@ public class EnemyAI : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        initPosition = transform.position;
     }
 
     public void aiMove(Vector3 direction)
@@ -87,6 +91,8 @@ public class EnemyAI : MonoBehaviour
                 
                 break;
             case "ball":
+                Vector3 distance2 = (manager.footBall.position - transform.position);
+                direction = Vector3.Scale(distance2, new Vector3(1f, 0f, 1f));
                 break;
 
             default:
