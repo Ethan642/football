@@ -52,7 +52,6 @@ public class TeamAI : MonoBehaviour
         Transform possible = other.transform;
         if (possible.tag == "GoodTeam" && possible != transform && lastPushed > .1f)
         {
-            print("how");
             lastPushed = 0;
             applyVelocity(possible.forward * 10f);
         }
