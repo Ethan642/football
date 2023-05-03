@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
             transforms.Add(teamPositions[i]);
         }
 
-        int usedThing = 5;
+        int usedThing = 11;
         print("should");
         int test = Random.Range(0, transforms.Count - 1);
         thePlayer.position = transforms[test].position;

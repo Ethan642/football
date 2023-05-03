@@ -351,6 +351,7 @@
 "Assets/Scripts/FootballController.cs"
 "Assets/Scripts/GameManager.cs"
 "Assets/Scripts/Menu.cs"
+"Assets/Scripts/Outbounds.cs"
 "Assets/Scripts/PlayerController.cs"
 "Assets/Scripts/TeamAI.cs"
 "Assets/Scripts/TeamIntel.cs"

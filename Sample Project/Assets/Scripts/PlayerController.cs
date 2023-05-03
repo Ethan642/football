@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundMask;
     public float MouseSensitivity;
     public Transform playerModel;
+    public Animator animator;
     bool jumping;
 
     float lastPushed;

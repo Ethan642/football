@@ -12,7 +12,8 @@ public class EnemyAI : MonoBehaviour
     public LayerMask groundMask;
     public Transform playerModel;
     public Transform footballHolder;
-    
+    public Animator animator;
+
     bool jumping;
 
     public float Gravity = 20;
@@ -80,7 +81,7 @@ public class EnemyAI : MonoBehaviour
 
         bool isGrounded = Physics.CheckSphere(groundCheck.position, .2f, groundMask);
 
-        Vector3 direction = Vector3.zero;//cam.transform.right * horizontal + new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z) * vertical;
+        Vector3 direction = Vector3.zero;//cam.transform.right * horizontal + new Vector3(cam.transform.forward.x, 0, cat.transform.forward.z) * vertical;
         
         switch (role)
         {

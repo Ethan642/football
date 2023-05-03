@@ -13,6 +13,7 @@ public class TeamAI : MonoBehaviour
     public Transform footballHolder;
     bool jumping;
     public TeamIntel aiInfo;
+    public Animator animator;
 
     public string role;
     public int pos;
@@ -28,6 +29,7 @@ public class TeamAI : MonoBehaviour
     Vector3 initPosition;
 
     float turnThing;
+
 
     float lastPushed;
 
@@ -71,9 +73,29 @@ public class TeamAI : MonoBehaviour
 
         Vector3 direction = Vector3.zero;//cam.transform.right * horizontal + new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z) * vertical;
         direction.Normalize();
+        
+
+        switch (role)
+        {
+            case "player":
+                Vector3 distance = (manager.playerPosition() - transform.position);
+                direction = Vector3.Scale(distance, new Vector3(1f, 0f, 1f));
+
+                break;
+            case "ball":
+                Vector3 distance2 = (manager.footBall.position - transform.position);
+                direction = Vector3.Scale(distance2, new Vector3(1f, 0f, 1f));
+                break;
+
+            default:
+                break;
+
+        }
 
         if (isGrounded)
             theMove = Vector3.Lerp(theMove, direction * RunSpeed * Time.deltaTime, 4f * Time.deltaTime);
+
+
 
 
 

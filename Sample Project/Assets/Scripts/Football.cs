@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Football : MonoBehaviour
 {
@@ -47,10 +48,14 @@ public class Football : MonoBehaviour
             third = null;
         }*/
         Transform theGuy = other.collider.transform;
+        if (theGuy.name == "grass" && kicked)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
         if (theGuy && theGuy.tag == "GoodTeam" && !rigidbody.isKinematic && kicked && lastKicked > 1f)
         {
 
-            print(theGuy);
+            
 
             if (theGuy.GetComponent<FootballController>())
             {
