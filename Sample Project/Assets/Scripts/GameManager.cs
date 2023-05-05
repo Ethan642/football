@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,14 +10,29 @@ public class GameManager : MonoBehaviour
     public Transform thePlayer;
 
     public Transform teamMate;
-    public Transform[] enemies;
+    public List<Transform> teamMates;
+    public List<Transform> enemies;
     public Transform footBall;
     public Transform ballFollow;
+
+
+    // ui
+
+    public Transform timeUI;
+
+
+
+    public int gameProgress;
+
+    public float time;
+
+    string[] roles = {"ball", "enemy"};
 
     public Transform[] teamPositions;
 
     public int homeScore;
     public int vistorScore;
+
 
     public Vector3 playerPosition()
     {
@@ -35,12 +52,25 @@ public class GameManager : MonoBehaviour
         print("should");
         int test = Random.Range(0, transforms.Count - 1);
         thePlayer.position = transforms[test].position;
+        thePlayer.rotation = Quaternion.Euler(0, 90f, 0);
         transforms.Remove(transforms[test]);
         while (usedThing > 0)
         {
             int thing = Random.Range(0, transforms.Count - 1);
-            print(transforms[thing]);
-            Instantiate(teamMate, transforms[thing].position, Quaternion.identity, null);
+            Transform newTeammate = Instantiate(teamMate, transforms[thing].position, Quaternion.Euler(0, -90f, 0), null);
+            newTeammate.GetComponent<TeamAI>().manager = this;
+
+            if (usedThing > 6)
+            {
+                newTeammate.GetComponent<TeamAI>().role = "ball";
+            }
+            else
+            {
+                newTeammate.GetComponent<TeamAI>().role = "enemy";
+            }
+            
+
+            teamMates.Add(newTeammate);
             transforms.Remove(transforms[thing]);
             usedThing--;
         }
@@ -58,5 +88,20 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         //ballFollow.position = new Vector3(footBall.position.x, ballFollow.position.y, ballFollow.position.z);
+        time += Time.deltaTime;
+       // timeUI.GetComponent<TextMeshPro>().text = time.ToString();
+        if (time > 120)
+        {
+            if (homeScore > vistorScore)
+            {
+                print("won!");
+            } else if (homeScore == vistorScore)
+            {
+                print("tied");
+            } else
+            {
+                print("lost!");
+            }
+        }
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class EnemyAI : MonoBehaviour
     public Transform footballHolder;
     public Animator animator;
 
+    public Vector3 originalPosition;
+
     bool jumping;
 
     public float Gravity = 20;
@@ -23,13 +26,16 @@ public class EnemyAI : MonoBehaviour
     public GameManager manager;
 
 
+    public float lastChose = 0;
+
     public string role;
     public int pos;
 
+    public Transform enemyChase;
 
     Vector3 initPosition;
 
-    float lastPushed;
+    float lastPushed = 20;
 
     public Transform ballPos;
 
@@ -41,8 +47,13 @@ public class EnemyAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
         initPosition = transform.position;
+        originalPosition = transform.position;
+    }
+
+    public void resetPosition()
+    {
+        transform.position = originalPosition;
     }
 
     public void aiMove(Vector3 direction)
@@ -90,6 +101,12 @@ public class EnemyAI : MonoBehaviour
                 direction = Vector3.Scale(distance, new Vector3(1f, 0f, 1f));
                 
                 break;
+
+            case "enemy":
+                Vector3 distance3 = (enemyChase.position - transform.position);
+                direction = Vector3.Scale(distance3, new Vector3(1f, 0f, 1f));
+
+                break;
             case "ball":
                 Vector3 distance2 = (manager.footBall.position - transform.position);
                 direction = Vector3.Scale(distance2, new Vector3(1f, 0f, 1f));
@@ -115,6 +132,15 @@ public class EnemyAI : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, smoothTurn, 0);
         }
 
+
+        lastChose += Time.deltaTime;
+
+        if (lastChose > 10f)
+        {
+            int test = Random.Range(0, manager.teamMates.Count - 1);
+            enemyChase = manager.teamMates[test];
+            lastChose = 0;
+        }
 
         controller.Move(theMove);
 

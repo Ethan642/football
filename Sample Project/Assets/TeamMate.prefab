@@ -269,11 +269,14 @@ MonoBehaviour:
   playerModel: {fileID: 5824189706237171348}
   footballHolder: {fileID: 5035351759515423856}
   aiInfo: {fileID: 0}
+  animator: {fileID: 0}
   role: 
   pos: 0
   manager: {fileID: 0}
   Gravity: 20
   ballPos: {fileID: 0}
+  enemyChase: {fileID: 0}
+  lastChose: 20
 --- !u!65 &5824189707426710283
 BoxCollider:
   m_ObjectHideFlags: 0

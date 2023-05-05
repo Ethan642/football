@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TeamAI : MonoBehaviour
@@ -28,6 +29,9 @@ public class TeamAI : MonoBehaviour
     Vector3 velocity;
     Vector3 initPosition;
 
+    public Transform enemyChase;
+    public float lastChose = 20f;
+
     float turnThing;
 
 
@@ -36,8 +40,9 @@ public class TeamAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
         initPosition = transform.position;
+        int test = Random.Range(0, manager.enemies.Count - 1);
+        enemyChase = manager.enemies[test];
     }
 
     public void aiMove(Vector3 direction)
@@ -77,8 +82,8 @@ public class TeamAI : MonoBehaviour
 
         switch (role)
         {
-            case "player":
-                Vector3 distance = (manager.playerPosition() - transform.position);
+            case "enemy":
+                Vector3 distance = (enemyChase.position - transform.position);
                 direction = Vector3.Scale(distance, new Vector3(1f, 0f, 1f));
 
                 break;
@@ -91,6 +96,8 @@ public class TeamAI : MonoBehaviour
                 break;
 
         }
+
+        direction.Normalize();
 
         if (isGrounded)
             theMove = Vector3.Lerp(theMove, direction * RunSpeed * Time.deltaTime, 4f * Time.deltaTime);
@@ -109,7 +116,14 @@ public class TeamAI : MonoBehaviour
 
         controller.Move(theMove);
 
+        lastChose += Time.deltaTime;
 
+        if (lastChose > 10f && enemyChase)
+        {
+            int test = Random.Range(0, manager.enemies.Count - 1);
+            enemyChase = manager.enemies[test];
+            lastChose = 0;
+        }
 
         velocity.y += -Gravity * Time.deltaTime;
 

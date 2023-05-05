@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +8,7 @@ public class Football : MonoBehaviour
     Rigidbody rigidbody;
     Transform third;
     public Transform player;
+    public GameManager manager;
 
     public bool kicked;
     public float lastKicked;
@@ -50,7 +50,14 @@ public class Football : MonoBehaviour
         Transform theGuy = other.collider.transform;
         if (theGuy.name == "grass" && kicked)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            /*
+            foreach (Transform enemy in manager.enemies)
+            {
+                EnemyAI ai = enemy.GetComponent<EnemyAI>();
+                ai.resetPosition();
+            }*/
+            
         }
         if (theGuy && theGuy.tag == "GoodTeam" && !rigidbody.isKinematic && kicked && lastKicked > 1f)
         {
