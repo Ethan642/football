@@ -353,6 +353,7 @@
 "Assets/Scripts/Menu.cs"
 "Assets/Scripts/Outbounds.cs"
 "Assets/Scripts/PlayerController.cs"
+"Assets/Scripts/Score.cs"
 "Assets/Scripts/TeamAI.cs"
 "Assets/Scripts/TeamIntel.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01.cs"

@@ -19,6 +19,16 @@ public class Menu : MonoBehaviour
         choose.SetActive(true);
     }
 
+    public void Replay()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
     public void Settings()
     {
 
