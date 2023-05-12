@@ -60,6 +60,7 @@ public class TeamAI : MonoBehaviour
         if (possible.tag == "GoodTeam" && possible != transform && lastPushed > .1f)
         {
             lastPushed = 0;
+            animator.SetTrigger("Shove");
             applyVelocity(possible.forward * 10f);
         }
     }
@@ -103,7 +104,7 @@ public class TeamAI : MonoBehaviour
             theMove = Vector3.Lerp(theMove, direction * RunSpeed * Time.deltaTime, 4f * Time.deltaTime);
 
 
-
+        animator.SetFloat("Speed", theMove.magnitude);
 
 
         if (direction.magnitude >= .1f && isGrounded)

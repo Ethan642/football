@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
         {
             lastPushed = 0;
             applyVelocity(possible.forward * 10f);
+            animator.SetTrigger("Shove");
         }
     }
 
@@ -65,9 +66,9 @@ public class PlayerController : MonoBehaviour
 
         if (isGrounded)
             theMove = Vector3.Lerp(theMove, direction * RunSpeed * Time.deltaTime, 4f * Time.deltaTime);
-         
 
-        
+        print(theMove.magnitude);
+        animator.SetFloat("Speed", Mathf.Abs(theMove.magnitude));
         if (direction.magnitude >= .1f && isGrounded)
         {
             float possibleLook = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
