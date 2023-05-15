@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     public List<Transform> enemies;
     public Transform footBall;
     public Transform ballFollow;
+    public Transform homeGoal;
+    public Transform vistorGoal;
 
 
     // ui
@@ -54,12 +56,18 @@ public class GameManager : MonoBehaviour
         thePlayer.position = transforms[test].position;
         thePlayer.rotation = Quaternion.Euler(0, 90f, 0);
         transforms.Remove(transforms[test]);
+
+        foreach (Transform enemy in enemies)
+        {
+            enemy.GetComponent<EnemyAI>().endzoneGoal = vistorGoal;
+        }
+
         while (usedThing > 0)
         {
             int thing = Random.Range(0, transforms.Count - 1);
             Transform newTeammate = Instantiate(teamMate, transforms[thing].position, Quaternion.Euler(0, -90f, 0), null);
             newTeammate.GetComponent<TeamAI>().manager = this;
-
+            newTeammate.GetComponent<TeamAI>().endzoneGoal = homeGoal;
             if (usedThing > 6)
             {
                 newTeammate.GetComponent<TeamAI>().role = "ball";

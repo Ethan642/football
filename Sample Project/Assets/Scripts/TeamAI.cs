@@ -15,6 +15,7 @@ public class TeamAI : MonoBehaviour
     bool jumping;
     public TeamIntel aiInfo;
     public Animator animator;
+    public Transform endzoneGoal;
 
     public string role;
     public int pos;
@@ -97,6 +98,13 @@ public class TeamAI : MonoBehaviour
                 break;
 
         }
+
+        if (footballHolder.GetComponentInChildren<Football>())
+        {
+            Vector3 distance2 = (endzoneGoal.position - transform.position);
+            direction = Vector3.Scale(distance2, new Vector3(1f, 0f, 1f));
+        }
+
 
         direction.Normalize();
 

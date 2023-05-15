@@ -15,6 +15,8 @@ public class EnemyAI : MonoBehaviour
     public Transform footballHolder;
     public Animator animator;
 
+    public Transform endzoneGoal;
+
     public Vector3 originalPosition;
 
     bool jumping;
@@ -120,6 +122,12 @@ public class EnemyAI : MonoBehaviour
 
         }
 
+
+        if (footballHolder.GetComponentInChildren<Football>())
+        {
+            Vector3 distance2 = (endzoneGoal.position - transform.position);
+            direction = Vector3.Scale(distance2, new Vector3(1f, 0f, 1f));
+        }
 
         direction.Normalize();
 
