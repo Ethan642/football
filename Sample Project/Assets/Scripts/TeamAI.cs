@@ -17,6 +17,8 @@ public class TeamAI : MonoBehaviour
     public Animator animator;
     public Transform endzoneGoal;
 
+    public int timesHit;
+
     public string role;
     public int pos;
 
@@ -62,6 +64,17 @@ public class TeamAI : MonoBehaviour
         {
             lastPushed = 0;
             animator.SetTrigger("Shove");
+
+            if (footballHolder.GetComponentInChildren<Football>())
+                timesHit += 1;
+            transform.GetComponent<AudioSource>().Play();
+            if (timesHit > 4 && footballHolder.GetComponentInChildren<Football>())
+            {
+                footballHolder.GetComponentInChildren<Football>().transform.parent = null;
+                footballHolder.GetComponentInChildren<Football>().transform.GetComponent<Rigidbody>().isKinematic = false;
+                timesHit = 0;
+            }
+
             applyVelocity(possible.forward * 10f);
         }
     }

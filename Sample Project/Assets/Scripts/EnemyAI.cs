@@ -27,6 +27,7 @@ public class EnemyAI : MonoBehaviour
 
     public GameManager manager;
 
+    public int timesHit;
 
     public float lastChose = 0;
 
@@ -77,6 +78,18 @@ public class EnemyAI : MonoBehaviour
         if (possible.tag == "GoodTeam" && possible != transform && lastPushed > .1f)
         {
             lastPushed = 0;
+
+            
+            if (footballHolder.GetComponentInChildren<Football>())
+                timesHit += 1;
+            transform.GetComponent<AudioSource>().Play();
+            if (timesHit > 4 && footballHolder.GetComponentInChildren<Football>())
+            {
+                footballHolder.GetComponentInChildren<Football>().transform.parent = null;
+                footballHolder.GetComponentInChildren<Football>().transform.GetComponent<Rigidbody>().isKinematic = false;
+                timesHit = 0;
+            }
+
             animator.SetTrigger("Shove");
             applyVelocity(possible.forward * 10f);
         }

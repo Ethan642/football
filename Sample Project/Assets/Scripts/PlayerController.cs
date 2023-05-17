@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     bool jumping;
 
+    public int timesHit;
+
     float lastPushed;
 
     float x;
@@ -46,6 +48,17 @@ public class PlayerController : MonoBehaviour
         if (possible.tag == "GoodTeam" && possible != transform && lastPushed > .1f)
         {
             lastPushed = 0;
+
+            if (transform.GetComponent<FootballController>().footballHolder.GetComponentInChildren<Football>())
+                timesHit += 1;
+            transform.GetComponent<AudioSource>().Play();
+            if (timesHit > 4 && transform.GetComponent<FootballController>().footballHolder.GetComponentInChildren<Football>())
+            {
+                transform.GetComponent<FootballController>().footballHolder.GetComponentInChildren<Football>().transform.parent = null;
+                transform.GetComponent<FootballController>().footballHolder.GetComponentInChildren<Football>().transform.GetComponent<Rigidbody>().isKinematic = false;
+                timesHit = 0;
+            }
+
             applyVelocity(possible.forward * 10f);
             animator.SetTrigger("Shove");
         }
